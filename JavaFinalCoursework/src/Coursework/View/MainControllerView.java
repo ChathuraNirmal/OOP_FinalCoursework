@@ -339,7 +339,8 @@ public class MainControllerView extends javax.swing.JFrame {
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         
-      
+     Singleton.getInstanceMainController().defenceUnlockedState(jSlider1.getValue());
+       
         
     }//GEN-LAST:event_jSlider1StateChanged
 
@@ -385,11 +386,6 @@ public class MainControllerView extends javax.swing.JFrame {
     public void setTextSubmarine(String txt) {
 
         jTextArea2.setText(txt);
-    }
-    public int sliderValueMain(){
-        
-        return jSlider1.getValue();
-        
     }
     
 }

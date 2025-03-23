@@ -46,7 +46,7 @@ public class Helicopter extends javax.swing.JFrame implements Observerable {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Helicopter");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
@@ -235,14 +235,6 @@ public class Helicopter extends javax.swing.JFrame implements Observerable {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
-
-        if (jSlider2.getValueIsAdjusting()) {
-            
-            
-            
-        }
-        
-        jSlider2.getValue();
         // TODO add your handling code here:
     }//GEN-LAST:event_jSlider2StateChanged
 
@@ -291,10 +283,27 @@ public class Helicopter extends javax.swing.JFrame implements Observerable {
         return jSpinner1.getValue().toString() + ":" + jSpinner2.getValue().toString();
 
     }
-    
-    public boolean positionState(){
-    
-        return  jCheckBox1.isSelected();
+
+    public boolean positionState() {
+
+        return jCheckBox1.isSelected();
     }
 
+    @Override
+    public void defenceUnlocker(int sliderValue) {
+
+        if (jCheckBox1.isSelected()) {
+
+            int value = 0;
+
+            if (value != sliderValue) {
+
+                jButton2.setEnabled(sliderValue >= 20);
+                jButton3.setEnabled(sliderValue >= 40);
+                jButton4.setEnabled(sliderValue >= 60);
+
+                value = sliderValue;
+            }
+        }
+    }
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Coursework.View;
+
 import Run.Singleton;
 import Coursework.Obs.Observerable;
 
@@ -10,7 +11,7 @@ import Coursework.Obs.Observerable;
  *
  * @author chath
  */
-public class Tank extends javax.swing.JFrame implements Observerable{
+public class Tank extends javax.swing.JFrame implements Observerable {
 
     /**
      * Creates new form Tank
@@ -45,7 +46,7 @@ public class Tank extends javax.swing.JFrame implements Observerable{
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tank");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
@@ -234,7 +235,7 @@ public class Tank extends javax.swing.JFrame implements Observerable{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-                Singleton.getInstanceMainControllerView().setTextTank("Tank: " + jTextField1.getText());
+        Singleton.getInstanceMainControllerView().setTextTank("Tank: " + jTextField1.getText());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -262,7 +263,6 @@ public class Tank extends javax.swing.JFrame implements Observerable{
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -282,27 +282,46 @@ public class Tank extends javax.swing.JFrame implements Observerable{
     // End of variables declaration//GEN-END:variables
 
 //    Method
-    
     @Override
-      public void txtSender(String txt){
-        
-        jTextField2.setText("MainController : "+txt);
-        
+    public void txtSender(String txt) {
+
+        jTextField2.setText("MainController : " + txt);
+
     }
-      
-      @Override
-    public void areaCleared(boolean state){
-        
+
+    @Override
+    public void areaCleared(boolean state) {
+
         if (state) {
             jLabel5.setText("Area Cleared");
-        return;
+            return;
         }
-            jLabel5.setText("Area Not Cleared");      
+        jLabel5.setText("Area Not Cleared");
     }
-    
-      public String infogetter() {
+
+    public String infogetter() {
 
         return jSpinner1.getValue().toString() + ":" + jSpinner2.getValue().toString();
 
     }
+
+    @Override
+    public void defenceUnlocker(int sliderValue) {
+
+        if (jCheckBox1.isSelected()) {
+
+            int value = 0;
+
+            if (value != sliderValue) {
+
+                jButton2.setEnabled(sliderValue >= 20);
+                jButton3.setEnabled(sliderValue >= 40);
+                jButton4.setEnabled(sliderValue >= 60);
+                jButton5.setEnabled(sliderValue >= 60);
+
+                value = sliderValue;
+            }
+        }
+    }
+
 }

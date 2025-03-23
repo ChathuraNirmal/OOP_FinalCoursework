@@ -50,7 +50,7 @@ public class Submarine extends javax.swing.JFrame implements Observerable {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Submarine");
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
@@ -254,6 +254,7 @@ public class Submarine extends javax.swing.JFrame implements Observerable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
@@ -330,10 +331,29 @@ public class Submarine extends javax.swing.JFrame implements Observerable {
         }
         jLabel5.setText("Area Not Cleared");
     }
-    
-      public String infogetter() {
+
+    public String infogetter() {
 
         return jSpinner1.getValue().toString() + ":" + jSpinner2.getValue().toString();
 
+    }
+
+    @Override
+    public void defenceUnlocker(int sliderValue) {
+
+        if (jCheckBox1.isSelected()) {
+
+            int value = 0;
+
+            if (value != sliderValue) {
+
+                jButton2.setEnabled(sliderValue >= 20);
+                jButton3.setEnabled(sliderValue >= 40);
+                jButton4.setEnabled(sliderValue >= 60);
+                jButton5.setEnabled(sliderValue >= 80);
+
+                value = sliderValue;
+            }
+        }
     }
 }

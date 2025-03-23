@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Coursework.Obs;
+
 /**
  *
  * @author chath
@@ -34,11 +35,23 @@ public class Observer {
 
     public void areaClearedState(boolean state) {
 
-        for (Observerable observer : ObserverArray) {
+        for (Observerable obj : ObserverArray) {
 
-            observer.areaCleared(state);
+            obj.areaCleared(state);
 
         }
 
+    } 
+
+    public void defenceUnlockedState(int sliderValue) {
+
+        for (Observerable obj : ObserverArray) {
+            
+            obj.defenceUnlocker(sliderValue);
+            
+        }
+   
+        
     }
+
 }

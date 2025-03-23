@@ -14,4 +14,5 @@ public interface Observerable {
     
     public void areaCleared(boolean state);
 
+    public void defenceUnlocker(int sliderValue);
 }
