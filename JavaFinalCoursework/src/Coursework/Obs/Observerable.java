@@ -8,11 +8,50 @@ package Coursework.Obs;
  *
  * @author chath
  */
-public interface Observerable {
+public class Observerable {
 
-    public void txtSender(String txt);
-    
-    public void areaCleared(boolean state);
+    Observer ObserverArray[] = new Observer[0];
+    int nextIndex;
 
-    public void defenceUnlocker(int sliderValue);
+    private void extendsArray() {
+        Observer[] tempObserverArray = new Observer[ObserverArray.length + 1];
+        System.arraycopy(ObserverArray, 0, tempObserverArray, 0, ObserverArray.length);
+        ObserverArray = tempObserverArray;
+    }
+
+    public void addObserverArray(Observer ObserverAr) {
+        extendsArray();
+        ObserverArray[nextIndex++] = ObserverAr;
+    }
+
+    public void txtUpdate(String txt) {
+
+        for (Observer observer : ObserverArray) {
+
+            observer.txtSender(txt);
+
+        }
+    }
+
+    public void areaClearedState(boolean state) {
+
+        for (Observer obj : ObserverArray) {
+
+            obj.areaCleared(state);
+
+        }
+
+    } 
+
+    public void defenceUnlockedState(int sliderValue) {
+
+        for (Observer obj : ObserverArray) {
+            
+            obj.defenceUnlocker(sliderValue);
+            
+        }
+   
+        
+    }
+
 }

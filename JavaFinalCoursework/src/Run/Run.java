@@ -5,7 +5,7 @@
 package Run;
 
 import Coursework.View.*;
-import Coursework.Obs.Observer;
+import Coursework.Obs.Observerable;
 
 /**
  *
@@ -15,7 +15,7 @@ public class Run {
     
     public static void main(String[] args) {
         
-        Observer mainController = Singleton.getInstanceMainController();
+        Observerable mainController = Singleton.getInstanceMainController();
         
         mainController.addObserverArray(Singleton.getInstanceHelicopter());
         mainController.addObserverArray(Singleton.getInstanceSubmarine());

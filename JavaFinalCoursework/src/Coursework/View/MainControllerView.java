@@ -4,7 +4,7 @@
  */
 package Coursework.View;
 
-import Coursework.Obs.Observer;
+import Coursework.Obs.Observerable;
 import Run.Singleton;
 import javax.swing.JComboBox;
 
@@ -14,10 +14,10 @@ import javax.swing.JComboBox;
  */
 public class MainControllerView extends javax.swing.JFrame {
 
-    private final Observer mainController;
+    private final Observerable mainController;
 
     /**
-     * Creates new form Observer
+     * Creates new form Observerable
      *
      */
     public MainControllerView() {
@@ -187,14 +187,16 @@ public class MainControllerView extends javax.swing.JFrame {
                                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(25, 25, 25))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton1)
-                                .addGap(0, 1, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jButton1))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 1, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(77, 77, 77)
@@ -278,7 +280,30 @@ public class MainControllerView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        mainController.txtUpdate(jTextField1.getText());
+        if (jCheckBox1.isSelected()) {
+
+            
+            switch (jComboBox2.getSelectedItem().toString()) {
+                case "Helicopter" -> {
+                    Singleton.getInstanceHelicopter().privateMessage(jTextField1.getText());
+                    break;
+                }
+                case "Submarine" -> {
+                    Singleton.getInstanceSubmarine().privateMessage(jTextField1.getText());
+                    break;
+                }
+                case "Tank" -> {
+                    Singleton.getInstanceTank().privateMessage(jTextField1.getText());
+                    break;
+                }
+                default ->
+                    throw new AssertionError();
+            }
+
+        } else {
+            mainController.txtUpdate(jTextField1.getText());
+        }
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -293,6 +318,7 @@ public class MainControllerView extends javax.swing.JFrame {
             case "Helicopter" -> {
                 String data = Singleton.getInstanceHelicopter().infogetter();
                 String dataAr[] = data.split(":");
+                
                 jTextField2.setText(dataAr[1]);
                 jTextField3.setText(dataAr[0]);
                 break;
@@ -338,10 +364,10 @@ public class MainControllerView extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        
-     Singleton.getInstanceMainController().defenceUnlockedState(jSlider1.getValue());
-       
-        
+
+        Singleton.getInstanceMainController().defenceUnlockedState(jSlider1.getValue());
+
+
     }//GEN-LAST:event_jSlider1StateChanged
 
     /**
@@ -373,19 +399,19 @@ public class MainControllerView extends javax.swing.JFrame {
 
     public void setTextHelicopter(String txt) {
 
-        jTextArea3.setText(txt);
+        jTextArea3.append(txt+"\n");
 
     }
 
     public void setTextTank(String txt) {
 
-        jTextArea1.setText(txt);
+        jTextArea1.append(txt+"\n");
 
     }
 
     public void setTextSubmarine(String txt) {
 
-        jTextArea2.setText(txt);
+        jTextArea2.append(txt+"\n");
     }
-    
+
 }

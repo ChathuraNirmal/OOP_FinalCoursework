@@ -5,13 +5,13 @@
 package Coursework.View;
 
 import Run.Singleton;
-import Coursework.Obs.Observerable;
+import Coursework.Obs.Observer;
 
 /**
  *
  * @author chath
  */
-public class Helicopter extends javax.swing.JFrame implements Observerable {
+public class Helicopter extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form Helicopter
@@ -264,7 +264,7 @@ public class Helicopter extends javax.swing.JFrame implements Observerable {
     @Override
     public void txtSender(String txt) {
 
-        jTextArea1.setText("MainController : " + txt);
+        jTextArea1.append("MainController : " + txt + "\n");
 
     }
 
@@ -289,21 +289,17 @@ public class Helicopter extends javax.swing.JFrame implements Observerable {
         return jCheckBox1.isSelected();
     }
 
+    public void privateMessage(String txt) {
+        jTextArea1.append("MainController : " + txt + "\n");
+    }
+
     @Override
     public void defenceUnlocker(int sliderValue) {
 
         if (jCheckBox1.isSelected()) {
-
-            int value = 0;
-
-            if (value != sliderValue) {
-
-                jButton2.setEnabled(sliderValue >= 20);
-                jButton3.setEnabled(sliderValue >= 40);
-                jButton4.setEnabled(sliderValue >= 60);
-
-                value = sliderValue;
-            }
+            jButton2.setEnabled(sliderValue >= Strongness.LOW.Strength());
+            jButton3.setEnabled(sliderValue >= Strongness.MEDIUM.Strength());
+            jButton4.setEnabled(sliderValue >= Strongness.HIGH.Strength());
         }
     }
 }

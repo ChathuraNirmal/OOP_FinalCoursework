@@ -4,7 +4,7 @@
  */
 package Run;
 
-import Coursework.Obs.Observer;
+import Coursework.Obs.Observerable;
 import Coursework.View.Helicopter;
 import Coursework.View.MainControllerView;
 import Coursework.View.Submarine;
@@ -16,14 +16,14 @@ import Coursework.View.Tank;
  */
 public class Singleton {
 
-     private static  Observer mainController ;
+     private static  Observerable mainController ;
 
     private Singleton() {}
  
-    public static Observer getInstanceMainController(){
+    public static Observerable getInstanceMainController(){
 
          if (mainController == null) {
-            mainController = new Observer();
+            mainController = new Observerable();
             return mainController;
          }
          return mainController;
